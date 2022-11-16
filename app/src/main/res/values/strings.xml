@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NecoHomework</string>
+    <string name="image">image</string>
+    <string name="add_plant">ADD PLANT</string>
 </resources>
