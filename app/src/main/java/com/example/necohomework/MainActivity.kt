@@ -1,6 +1,9 @@
 package com.example.necohomework
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.necohomework.databinding.ActivityMainBinding
@@ -8,13 +11,18 @@ import com.example.necohomework.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val adapter = PlantAdapter()
-    private val image = R.drawable.plant
+    private var editLauncher : ActivityResultLauncher<Intent>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
+        editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            if(it.resultCode == RESULT_OK){
+                adapter.addPlant(it.data?.getSerializableExtra("plant") as Plant)
+            }
+        }
     }
 
     private fun init() {
@@ -22,8 +30,8 @@ class MainActivity : AppCompatActivity() {
             rcView.layoutManager = GridLayoutManager(this@MainActivity, 3)
             rcView.adapter = adapter
             buttonAdd.setOnClickListener {
-                val plant = Plant(image, "Plant")
-                adapter.addPlant(plant)
+                editLauncher?.launch(Intent(this@MainActivity, EditActivity::class.java))
+
             }
         }
     }
