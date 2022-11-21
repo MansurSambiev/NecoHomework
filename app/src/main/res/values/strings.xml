@@ -1,10 +1,3 @@
 <resources>
     <string name="app_name">NecoHomework</string>
-    <string name="image">image</string>
-    <string name="add_plant">ADD PLANT</string>
-    <string name="next_image">next image</string>
-    <string name="imageSelect">ImageSelect</string>
-    <string name="done">done</string>
-    <string name="description">Description</string>
-    <string name="title">Title</string>
 </resources>
