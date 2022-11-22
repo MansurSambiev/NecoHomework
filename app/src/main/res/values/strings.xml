@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NecoHomework</string>
+    <string name="send_message">Send message to fragment</string>
+    <string name="message">Message</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="send_message_act">Send message to Activity</string>
 </resources>
