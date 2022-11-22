@@ -7,13 +7,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.necohomework.databinding.PlantItemBinding
 
-class PlantAdapter: RecyclerView.Adapter<PlantAdapter.PlantHolder>() {
+class PlantAdapter(private val listener: Listener): RecyclerView.Adapter<PlantAdapter.PlantHolder>() {
     private val plantList = ArrayList<Plant>()
     class PlantHolder(item: View): RecyclerView.ViewHolder(item){
         private val binding = PlantItemBinding.bind(item)
-        fun bind(plant: Plant) = with(binding){
+        fun bind(plant: Plant, listener: Listener) = with(binding){
             im.setImageResource(plant.imageId)
             tvTitle.text = plant.title
+            itemView.setOnClickListener{
+                listener.onClick(plant)
+            }
 
         }
     }
@@ -24,7 +27,7 @@ class PlantAdapter: RecyclerView.Adapter<PlantAdapter.PlantHolder>() {
     }
 
     override fun onBindViewHolder(holder: PlantHolder, position: Int) {
-        holder.bind(plantList[position])
+        holder.bind(plantList[position], listener)
     }
 
     override fun getItemCount(): Int {
@@ -35,5 +38,9 @@ class PlantAdapter: RecyclerView.Adapter<PlantAdapter.PlantHolder>() {
     fun addPlant(plant: Plant){
         plantList.add(plant)
         notifyDataSetChanged()
+    }
+
+    interface Listener{
+        fun onClick(plant: Plant)
     }
 }

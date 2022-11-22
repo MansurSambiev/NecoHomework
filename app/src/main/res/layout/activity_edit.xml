@@ -75,7 +75,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="5dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/plant1"
+                android:src="@drawable/plant"
                 android:contentDescription="@string/imageSelect" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
