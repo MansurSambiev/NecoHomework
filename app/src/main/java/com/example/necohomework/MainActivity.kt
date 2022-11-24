@@ -2,7 +2,6 @@ package com.example.necohomework
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -38,6 +37,8 @@ class MainActivity : AppCompatActivity(), PlantAdapter.Listener {
     }
 
     override fun onClick(plant: Plant) {
-        Toast.makeText(this, plant.title, Toast.LENGTH_LONG).show()
+        startActivity(Intent(this, ContentActivity::class.java).apply {
+            putExtra("item", plant)
+        })
     }
 }
